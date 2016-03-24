@@ -2,7 +2,6 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
 
-    // Config
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -23,6 +22,9 @@ module.exports = function(grunt) {
 
         jsonlint: {
             all: {
+                options: {
+                    indent: 2
+                },
                 src: ['src/**/*.{json,mcmeta}']
             }
         },
@@ -41,7 +43,7 @@ module.exports = function(grunt) {
         imagemin: {
             dist: {
                 options: {
-                    optimizationLevel: 5
+                    optimizationLevel: 3
                 },
                 files: [{
                     expand: true,
@@ -60,7 +62,8 @@ module.exports = function(grunt) {
                     src: [
                         '**',
                         '!<%= jsonmin.dist.files[0].src %>',
-                        '!<%= imagemin.dist.files[0].src %>'
+                        '!<%= imagemin.dist.files[0].src %>',
+                        '!**/*.xcf'
                     ],
                     dest: 'dist/'
                 }, {
