@@ -5,9 +5,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        // Need a copy to handle release tasks.
-        pkgCopy: grunt.file.readJSON('package.json'),
-
         clean: ['dist/'],
 
         lintspaces: {
@@ -43,7 +40,7 @@ module.exports = function(grunt) {
         imagemin: {
             dist: {
                 options: {
-                    optimizationLevel: 3
+                    optimizationLevel: 1
                 },
                 files: [{
                     expand: true,
@@ -90,7 +87,7 @@ module.exports = function(grunt) {
         compress: {
             build: {
                 options: {
-                    archive: 'minecraft-rp-<%= new Date().getTime() %>.zip',
+                    archive: '<%= pkg.name %>-<%= new Date().getTime() %>.zip',
                 },
                 files: [{
                     expand: true,
